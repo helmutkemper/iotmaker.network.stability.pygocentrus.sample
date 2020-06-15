@@ -5,6 +5,8 @@ RUN chmod 700 /app
 
 COPY . /app
 
+RUN apk add --no-cache git
+
 RUN go get -u github.com/helmutkemper/iotmaker.docker
 RUN go get -u github.com/helmutkemper/iotmaker.network.stability.pygocentrus
 
