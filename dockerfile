@@ -14,4 +14,4 @@ RUN go build -o /app/main /app/main.go
 
 WORKDIR /app
 
-CMD ["/main"]
+CMD ["./main"]
