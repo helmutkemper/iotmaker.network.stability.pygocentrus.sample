@@ -16,7 +16,4 @@ FROM scratch
 
 COPY --from=builder /app/ .
 
-VOLUME /static
-EXPOSE 27015
-
 CMD ["/main"]
