@@ -1,32 +1,16 @@
 package main
 
 import (
-	"fmt"
-	iotmakerDocker "github.com/helmutkemper/iotmaker.docker"
-	"github.com/helmutkemper/iotmaker.docker/factoryDocker"
+	"log"
+	"net/http"
 )
 
 func main() {
-	var err error
-	var id string
-	var ipAddress string
-	var dockerSys *iotmakerDocker.DockerSystem
-	var netData iotmakerDocker.ContainerNetworkDataList
-	err, dockerSys = factoryDocker.NewClient()
-	if err != nil {
-		panic(err)
-	}
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
 
-	err, id = dockerSys.ContainerFindIdByNameContains("mongodb_pygocentrus_")
+	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-
-	err, netData = dockerSys.ContainerNetworkInspect(id)
-	if err != nil {
-		panic(err)
-	}
-
-	ipAddress = netData.GetIpAddressByNetworkName("pygocentrus_network")
-	fmt.Printf("container ip: %v\n", ipAddress)
 }
