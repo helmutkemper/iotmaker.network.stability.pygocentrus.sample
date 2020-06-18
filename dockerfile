@@ -9,7 +9,8 @@ COPY . /app
 ARG CGO_ENABLED=0
 RUN go build -o /app/main /app/main.go
 
-VOLUME /app/static
+WORKDIR /app
+
 EXPOSE 3000
 
 CMD ["/app/main"]
