@@ -13,4 +13,4 @@ WORKDIR /app
 
 EXPOSE 3000
 
-CMD ["/app/main"]
+CMD ["./main"]
