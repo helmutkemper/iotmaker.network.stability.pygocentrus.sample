@@ -10,7 +10,7 @@ RUN apk add --no-cache git
 RUN go get -u github.com/docker/docker
 RUN go get -u github.com/helmutkemper/iotmaker.docker
 
-RUN find . -name vendor -type d -print0|xargs -0 rm -r --
+RUN find . -name vendor -type d -print0|xargs -0 rm -rf --
 
 # import golang packages to be used inside image "scratch"
 ARG CGO_ENABLED=0
